@@ -15,12 +15,12 @@ tfidf = gensim.models.TfidfModel(corpus, normalize=True)
 corpus_tfidf = tfidf[corpus]
 
 # project to 2 dimensions for visualization
-lsi = gensim.models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=100)
+lsi = gensim.models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=1000)
 
 # write out coordinates to file
 fcoords = open(os.path.join(MODELS_DIR, "coords.csv"), 'wb')
 for vector in lsi[corpus]:
-    if len(vector) != 2:
+    if len(vector) != 6:
         continue
     fcoords.write("%6.4f\t%6.4f\n" % (vector[0][1], vector[1][1]))
 fcoords.close()

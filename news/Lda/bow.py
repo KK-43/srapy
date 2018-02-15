@@ -1,7 +1,9 @@
 import logging
 import os
-import nltk
+
 import gensim
+
+import nltk
 nltk.download('stopwords')
 
 def iter_docs(topdir, stoplist):
@@ -20,6 +22,7 @@ class MyCorpus(object):
         self.topdir = topdir
         self.stoplist = stoplist
         self.dictionary = gensim.corpora.Dictionary(iter_docs(topdir, stoplist))
+        print(self.dictionary.token2id)
 
     def __iter__(self):
         for tokens in iter_docs(self.topdir, self.stoplist):
